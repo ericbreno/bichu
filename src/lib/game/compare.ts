@@ -16,14 +16,14 @@ export interface ColumnMeta {
 }
 
 export const COLUMNS: ColumnMeta[] = [
-  { key: "classe", label: "Classe", kind: "categorical" },
-  { key: "dieta", label: "Dieta", kind: "multi" },
-  { key: "continentes", label: "Continentes", kind: "multi" },
-  { key: "habitat", label: "Habitat", kind: "multi" },
+  { key: "comprimentoCm", label: "Tamanho", kind: "numeric", greater: "Maior", lesser: "Menor" },
   { key: "pesoMedioKg", label: "Peso", kind: "numeric", greater: "Mais pesado", lesser: "Mais leve" },
-  { key: "comprimentoCm", label: "Comprimento", kind: "numeric", greater: "Maior", lesser: "Menor" },
   { key: "velocidadeMaxima", label: "Velocidade", kind: "numeric", greater: "Mais rápido", lesser: "Mais lento" },
+  { key: "dieta", label: "Dieta", kind: "multi" },
+  { key: "habitat", label: "Habitat", kind: "multi" },
   { key: "expectativaVida", label: "Vida média", kind: "numeric", greater: "Vive mais", lesser: "Vive menos" },
+  { key: "continentes", label: "Continentes", kind: "multi" },
+  { key: "classe", label: "Classe", kind: "categorical" },
   { key: "domestico", label: "Doméstico", kind: "boolean" },
   { key: "voa", label: "Voa", kind: "boolean" },
   { key: "nada", label: "Nada", kind: "boolean" },
@@ -90,8 +90,7 @@ function compareBoolean(guess: boolean, answer: boolean, meta: ColumnMeta): Cell
   return { 
     key: meta.key,
     label: meta.label,
-    tone: guess === answer ? "green" : "red",
-    hint: guess ? "Sim" : "Não"
+    tone: guess === answer ? "green" : "red"
   };
 }
 

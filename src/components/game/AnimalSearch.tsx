@@ -19,9 +19,7 @@ export function AnimalSearch({ excludeIds, onPick, disabled }: Props) {
   const [open, setOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
 
-  const results = query.trim()
-    ? searchAnimals(query, 7).filter((a) => !excludeIds.includes(a.id))
-    : [];
+  const results = searchAnimals(query, 50).filter((a) => !excludeIds.includes(a.id));
 
   // Fecha o dropdown ao clicar fora.
   useEffect(() => {
@@ -77,7 +75,7 @@ export function AnimalSearch({ excludeIds, onPick, disabled }: Props) {
           setOpen(true);
           setActive(0);
         }}
-        onFocus={() => query && setOpen(true)}
+        onFocus={() => setOpen(true)}
         onKeyDown={handleKeyDown}
       />
       {open && results.length > 0 && (

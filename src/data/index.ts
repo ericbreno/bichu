@@ -25,8 +25,8 @@ export function getAnimal(id: string): Animal | undefined {
  */
 export function searchAnimals(query: string, limit = 6): Animal[] {
   const q = normalizeText(query);
-  if (!q) return [];
   return ANIMALS.filter((a) => {
+    if (!q) return true;
     if (normalizeText(a.nome).includes(q)) return true;
     return a.aliases?.some((alias) => normalizeText(alias).includes(q)) ?? false;
   }).slice(0, limit);

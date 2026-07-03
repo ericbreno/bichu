@@ -9,13 +9,49 @@ import { Legend } from "./Legend";
 import { ResultModal } from "./ResultModal";
 import { StatsModal } from "./StatsModal";
 import { useGameSession } from "./useGameSession";
-import type { GameMode } from "@/lib/game/types";
+import type { Animal, Cell, GameMode, GuessRow } from "@/lib/game/types";
 import styles from "./GameBoard.module.css";
+import { AnimalGuess } from "./AnimalGuess";
+
+function formatProp(prop: keyof Animal, value: unknown) {
+  if (prop === 'continentes') {
+    const typed = value as string[];
+    return typed.length > 2 ? [typed[0], `+${typed.length - 1}`] : value;
+  }
+  if (prop === 'comprimentoCm') return `${value}cm`;
+  if (prop === 'expectativaVida') return `${value} anos`;
+  if (prop === 'velocidadeMaxima') return `${value} km/h`;
+  if (prop === 'pesoMedioKg' && typeof value === 'number') 
+    return value >= 1 ? `${value}kg` : value >= 0.001 ? `${(value / 1000).toFixed(2)}g` : '< 1g';
+  return value;
+}
 
 export function GameBoard({ mode }: { mode: GameMode }) {
   const game = useGameSession(mode);
   const [resultOpen, setResultOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
+  const answer = game.answer;
+
+  const won = game.status === 'won';
+  const foundBooleans: GuessRow = {
+    emoji: won && answer?.emoji || "❓" ,
+    animalId: won && answer?.id || "?",
+    nome: won && answer?.nome || "?",
+    cells: Object.values(game.rows.reduce((ac, row) => {
+      row.cells.forEach(cell => {
+        if (cell.tone === 'green') {
+          const ansValue = formatProp(cell.key, answer![cell.key]);
+          const hint = typeof ansValue === 'boolean' ? cell.hint : `${ansValue}`;
+          ac[cell.key] = { ...cell, hint };
+        }
+        if (!ac[cell.key]) ac[cell.key] = {
+          ...cell,
+          hint: '?'
+        }
+      });
+      return ac;
+    }, {} as Record<string, Cell>))
+  };
 
   // Reabre o modal de resultado sempre que a partida termina.
   useEffect(() => {
@@ -29,7 +65,7 @@ export function GameBoard({ mode }: { mode: GameMode }) {
   const finished = game.status !== "playing";
 
   return (
-    <div className={styles.board}>
+    <div className={styles.board} onClick={() => finished && !resultOpen && setResultOpen(true)}>
       <header className={styles.header}>
         <div>
           <h1 className={styles.title}>
@@ -59,17 +95,23 @@ export function GameBoard({ mode }: { mode: GameMode }) {
         disabled={finished}
       />
 
+      {game.attempts.length > 0 ? <AnimalGuess row={foundBooleans} attemptIndex={0} /> : null}
+
       {!finished && game.attempts.length > 0 && (
-        <button
-          type="button"
-          className={`btn btn-ghost ${styles.giveUp}`}
-          onClick={game.giveUp}
-        >
-          Desistir e ver resposta
-        </button>
+        <div className={styles.tries}>
+          <div>Tentativas</div>
+
+          <button
+            type="button"
+            className={`btn btn-ghost ${styles.giveUp}`}
+            onClick={game.giveUp}
+          >
+            Desistir e ver resposta
+          </button>
+        </div>
       )}
 
-      <HistoryGrid rows={game.rows} />
+      <HistoryGrid rows={finished ? game.rows.slice(0, -1) : game.rows} />
 
       {finished && (
         <button

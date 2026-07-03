@@ -4,7 +4,8 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import styles from "./como-jogar.module.css";
 import Guess from "@/components/game/Guess";
-import { Cell } from "@/lib/game/types";
+import { Cell, GuessRow } from "@/lib/game/types";
+import { AnimalGuess } from "@/components/game/AnimalGuess";
 
 export const metadata: Metadata = {
   title: "Como Jogar",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/como-jogar" },
 };
 
-const EXAMPLE: Cell[] = [
+const cells: Cell[] = [
   { key: 'classe', label: "Classe", tone: "green", hint: "✓ Igual" },
   { key: 'dieta', label: "Dieta", tone: "red", hint: "✗ Diferente" },
   { key: 'continentes', label: "Continentes", tone: "yellow", hint: "Parcial" },
@@ -21,6 +22,13 @@ const EXAMPLE: Cell[] = [
   { key: 'comprimentoCm', label: "Comprimento", tone: "green", hint: "≈ Igual" },
   { key: 'velocidadeMaxima', label: "Velocidade", tone: "yellow", hint: "↑ Mais rápido" },
 ];
+
+const animal: GuessRow = {
+  animalId: "urso-pardo",
+  nome: "Urso-Pardo",
+  emoji: "🐻",
+  cells
+}
 
 export default function ComoJogarPage() {
   return (
@@ -83,16 +91,9 @@ export default function ComoJogarPage() {
           Se o animal secreto for o <strong>Leão</strong> e você chutar{" "}
           <strong>Urso-pardo</strong>:
         </p>
-        <div className={styles.example}>
-          <div className={styles.exampleHead}>
-            <span className={styles.exampleEmoji} aria-hidden="true">🐻</span> Urso-pardo
-          </div>
-          <div className={styles.chips}>
-            {EXAMPLE.map((c, idx) => (
-              <Guess cell={c} key={idx} />
-            ))}
-          </div>
-        </div>
+
+        <AnimalGuess row={animal} attemptIndex={0} />
+
         <p className={styles.tip}>
           Dica: é um mamífero do mesmo tamanho do urso, mas carnívoro, mais rápido,
           mais pesado e da savana — quase um leão!
