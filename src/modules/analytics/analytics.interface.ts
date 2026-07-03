@@ -9,7 +9,8 @@ export type AnalyticsEvent =
   | "cta_click"
   | "game_won"
   | "game_lost"
-  | "share_clicked";
+  | "share_clicked"
+  | "share_image_clicked";
 
 export type AnalyticsValue = string | number | boolean | undefined;
 

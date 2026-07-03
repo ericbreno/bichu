@@ -7,4 +7,5 @@ export const ANALYTICS_EVENTS: readonly AnalyticsEvent[] = [
   "game_won",
   "game_lost",
   "share_clicked",
+  "share_image_clicked",
 ] as const;

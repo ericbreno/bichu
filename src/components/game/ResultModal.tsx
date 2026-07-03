@@ -6,9 +6,9 @@
 import { useEffect, useState } from "react";
 import { Modal } from "@/components/ui/Modal";
 import { ShareButton } from "./ShareButton";
-import { site } from "@/config/site";
+import { ShareImageButton } from "./ShareImageButton";
 import { brtDateString } from "@/lib/date";
-import { buildShareText } from "@/lib/game/share";
+import { buildShareParts, buildShareText, stripProtocol } from "@/lib/game/share";
 import type { Animal, GameMode, GuessRow } from "@/lib/game/types";
 import type { Stats } from "@/lib/game/stats";
 import styles from "./ResultModal.module.css";
@@ -70,13 +70,15 @@ export function ResultModal({
 }: Props) {
   const title = won ? "Você acertou! 🎉" : "Não foi dessa vez";
 
-  const shareText = () =>
-    buildShareText({
-      mode,
-      dayNumber,
-      rows,
-      domain: site.domain,
-    });
+  // Link atual da página sem o protocolo — definido no cliente para evitar
+  // divergência entre SSR e hidratação.
+  const [link, setLink] = useState("");
+  useEffect(() => {
+    setLink(stripProtocol(window.location.href));
+  }, []);
+
+  const parts = buildShareParts({ mode, dayNumber, rows, link });
+  const shareText = () => buildShareText(parts);
 
   return (
     <Modal open={open} onClose={onClose} title={title}>
@@ -108,6 +110,7 @@ export function ResultModal({
 
       <div className={styles.actions}>
         <ShareButton getText={shareText} />
+        <ShareImageButton parts={parts} getText={shareText} />
         {mode === "infinite" && onNewGame ? (
           <button type="button" className="btn btn-secondary btn-block" onClick={onNewGame}>
             🔄 Jogar de novo

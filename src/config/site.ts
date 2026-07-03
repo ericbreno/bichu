@@ -8,5 +8,5 @@ export const site = {
   supportEmail: "contato@bichu.app",
   /** Id do Google Analytics 4 (formato G-XXXXXXX).
    * Defina NEXT_PUBLIC_GA_ID (.env.local) para ativar; vazio desativa (no-op). */
-  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "",
+  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-XGZYE88GN2",
 } as const;
