@@ -1,0 +1,40 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loading {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.giveUp {
+  align-self: flex-start;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.resultBtn {
+  margin-top: 4px;
+}

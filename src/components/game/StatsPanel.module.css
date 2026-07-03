@@ -1,0 +1,84 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+.emptyDist {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.dist {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.distRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.distTries {
+  width: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: right;
+}
+
+.distBar {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 6px;
+  height: 22px;
+  overflow: hidden;
+}
+
+.distFill {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: right;
+  padding-right: 6px;
+  line-height: 22px;
+  min-width: 18px;
+  transition: width 0.3s ease;
+}

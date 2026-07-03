@@ -1,0 +1,39 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  min-height: 64dvh;
+  padding: 24px 0;
+}
+
+.hero {
+  text-align: center;
+  animation: fade-in 0.3s ease-out;
+}
+
+.mark {
+  font-size: 3.4rem;
+  line-height: 1;
+  margin-bottom: 8px;
+  animation: pop 0.4s ease-out;
+}
+
+.title {
+  font-size: 2.6rem;
+  margin: 0 0 8px;
+  color: var(--primary);
+}
+
+.tagline {
+  margin: 0 auto;
+  max-width: 32ch;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

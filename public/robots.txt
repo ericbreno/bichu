@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Troque pela URL de produção. O Next.js exporta este arquivo junto com o site.
+Sitemap: https://example.com/sitemap.xml

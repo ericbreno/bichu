@@ -1,0 +1,225 @@
+:root {
+  /* Paleta — troque pelas cores da marca. */
+  --bg: #f6f3ee;
+  --surface: #fffdf9;
+  --primary: #7aa6a1;
+  --secondary: #c7d8c6;
+  --accent: #e4b363;
+  --text: #2f3a39;
+  --success: #7dba7d;
+  --muted: #868885;
+
+  /* Tokens derivados */
+  --border: rgba(47, 58, 57, 0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --max-width: 480px;
+  --shadow-sm: 0 1px 2px rgba(47, 58, 57, 0.05);
+  --shadow: 0 8px 24px rgba(47, 58, 57, 0.08);
+
+  /* Paleta pastel do jogo (pistas da comparação). */
+  --cell-green: #b8e6b8;
+  --cell-yellow: #ffe8a3;
+  --cell-red: #f7b5b5;
+  --cell-blue: #b8ddf8;
+  --cell-neutral: #ececec;
+  --cell-text: #2f3a39;
+
+  /* Inter é injetada pelo next/font como --font-inter no <html>. */
+  --font-sans: var(--font-inter), -apple-system, blinkmacsystemfont, "Segoe UI",
+    roboto, helvetica, arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--primary);
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Animações discretas do jogo (flip da célula, fade/slide de entradas). */
+@keyframes cell-flip {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.92);
+  }
+  60% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes cell-flip {
+    0%,
+    100% {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes slide-up {
+    0%,
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes pop {
+    0%,
+    100% {
+      transform: none;
+    }
+  }
+}
+
+.divider {
+  border-bottom: 1px solid rgb(206, 206, 206);
+  width: 100%;
+}
+
+/* Botões utilitários reutilizáveis em todo o jogo. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--text);
+  background: var(--surface);
+}
