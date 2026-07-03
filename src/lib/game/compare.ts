@@ -87,7 +87,12 @@ function compareNumeric(guess: number, answer: number, meta: ColumnMeta): Cell {
 }
 
 function compareBoolean(guess: boolean, answer: boolean, meta: ColumnMeta): Cell {
-  return { key: meta.key, label: meta.label, tone: guess === answer ? "green" : "red" };
+  return { 
+    key: meta.key,
+    label: meta.label,
+    tone: guess === answer ? "green" : "red",
+    hint: guess ? "Sim" : "Não"
+  };
 }
 
 /** Compara um chute com o alvo e devolve uma célula por coluna (ordem canônica). */

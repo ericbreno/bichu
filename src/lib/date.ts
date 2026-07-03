@@ -35,8 +35,8 @@ export function isSameLocalDay(a: Date, b: Date): boolean {
 // fuso do aparelho. Por isso calculamos o dia no fuso BRT via Intl.DateTimeFormat.
 
 const BRT_TZ = "America/Sao_Paulo";
-// Marco zero do Diário: 2024-01-01 00:00 UTC. O nº do dia (#1) começa aqui.
-const DAILY_EPOCH_UTC = Date.UTC(2024, 0, 1);
+// Marco zero do Diário. O nº do dia (#1) começa aqui.
+const DAILY_EPOCH_UTC = Date.UTC(2026, 5, 3);
 
 /** String YYYY-MM-DD da meia-noite de Brasília para o instante dado. */
 export function brtDateString(date = new Date()): string {
