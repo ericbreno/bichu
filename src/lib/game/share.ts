@@ -50,5 +50,5 @@ export function buildShareParts({ mode, dayNumber, rows, link }: ShareInput): Sh
 
 /** Texto final copiável para a área de transferência. */
 export function buildShareText(parts: ShareParts): string {
-  return `${parts.header}\n\n${parts.grid.join("\n")}\n\n${parts.resultLine}\n\n${parts.link}`;
+  return `${parts.header}\n\n${parts.grid.join("\n")}\n\n${parts.resultLine}\n\n${parts.link}\n`;
 }
