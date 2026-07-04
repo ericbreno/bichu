@@ -11,7 +11,5 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/ericbreno/",
     linkedinHandle: "in/ericbreno",
   },
-  /** Id do Google Analytics 4 (formato G-XXXXXXX).
-   * Defina NEXT_PUBLIC_GA_ID (.env.local) para ativar; vazio desativa (no-op). */
-  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-7VE2SHE9CF",
+  gaId: "G-7VE2SHE9CF",
 } as const;
