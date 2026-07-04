@@ -1,8 +1,8 @@
 {
-  "name": "next-bootstrap",
+  "name": "bichu",
   "version": "1.0.0",
   "private": true,
-  "description": "Bootstrap Next.js 15 (estático) com SEO, analytics e persistência prontos.",
+  "description": "Bichu — adivinhe o animal do dia. Jogo online de pistas sobre classe, dieta, habitat, peso e mais.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

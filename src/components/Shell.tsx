@@ -14,6 +14,7 @@ export function Shell({ children }: { children: ReactNode }) {
         <Logo />
         <nav className={styles.nav}>
           <Link href="/como-jogar" className={styles.link}>Como Jogar</Link>
+          <Link href="/sobre" className={styles.link}>Sobre</Link>
         </nav>
       </header>
 

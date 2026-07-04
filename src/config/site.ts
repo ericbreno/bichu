@@ -3,10 +3,15 @@
 
 export const site = {
   name: "Bichu",
-  domain: "bichu.app",
-  url: "https://bichu.app",
-  supportEmail: "contato@bichu.app",
+  domain: "bi-chuu.web.app",
+  url: "https://bi-chuu.web.app",
+  supportEmail: "contato@bi-chuu.web.app",
+  author: {
+    name: "Eric Breno",
+    linkedin: "https://www.linkedin.com/in/ericbreno/",
+    linkedinHandle: "in/ericbreno",
+  },
   /** Id do Google Analytics 4 (formato G-XXXXXXX).
    * Defina NEXT_PUBLIC_GA_ID (.env.local) para ativar; vazio desativa (no-op). */
-  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-XGZYE88GN2",
+  gaId: process.env.NEXT_PUBLIC_GA_ID ?? "G-7VE2SHE9CF",
 } as const;

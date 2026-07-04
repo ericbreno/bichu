@@ -1,0 +1,49 @@
+.page {
+  line-height: 1.6;
+}
+
+.page h1 {
+  font-size: 1.6rem;
+}
+
+.page h2 {
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.lead {
+  font-size: 1.02rem;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contacts li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1.8em;
+}
+
+.back {
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+}

@@ -1,9 +1,11 @@
-# next-bootstrap
+# Bichu
 
-Ponto de partida (starter) para projetos web estáticos: Next.js 15 (App Router) +
-TypeScript + exportação estática (`output: 'export'`). Já vem com shell da aplicação,
-design tokens, SEO/metadata, analytics (Google Analytics) e persistência
-(localStorage) prontos — tudo atrás de abstrações trocáveis.
+Jogo online de adivinhação de animais: descubra o animal secreto a cada chute, com
+pistas sobre classe, dieta, habitat, peso e mais. Modos Animal do Dia e Infinito.
+
+Construído com Next.js 15 (App Router) + TypeScript + exportação estática
+(`output: 'export'`), com shell da aplicação, design tokens, SEO/metadata, analytics
+(Google Analytics) e persistência (localStorage) — tudo atrás de abstrações trocáveis.
 
 ## Stack
 
