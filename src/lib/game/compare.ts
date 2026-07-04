@@ -35,14 +35,12 @@ export const COLUMNS: ColumnMeta[] = [
 
 /** Subconjunto de colunas exibido no grid de emojis do compartilhamento. */
 export const SHARE_COLUMN_KEYS: (keyof Animal)[] = [
-  "classe",
   "dieta",
   "continentes",
   "habitat",
   "pesoMedioKg",
   "comprimentoCm",
   "velocidadeMaxima",
-  "expectativaVida",
 ];
 
 const NUMERIC_TOLERANCE = 0.12; // |razão - 1| <= tol  → "≈" (verde)
