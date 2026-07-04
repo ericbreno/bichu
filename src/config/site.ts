@@ -4,7 +4,7 @@
 export const site = {
   name: "Bichu",
   domain: "bi-chuu.web.app",
-  url: "bi-chuu.web.app",
+  url: "https://bi-chuu.web.app",
   supportEmail: "contato@bi-chuu.web.app",
   author: {
     name: "Eric Breno",

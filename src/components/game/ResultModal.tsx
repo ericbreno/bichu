@@ -71,7 +71,7 @@ export function ResultModal({
 }: Props) {
   const title = won ? "Você acertou! 🎉" : "Não foi dessa vez";
 
-  const parts = buildShareParts({ mode, dayNumber, rows, link: site.url });
+  const parts = buildShareParts({ mode, dayNumber, rows, link: site.domain });
   const shareText = () => buildShareText(parts);
 
   return (
