@@ -19,7 +19,9 @@ export function AnimalSearch({ excludeIds, onPick, disabled }: Props) {
   const [open, setOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
 
-  const results = searchAnimals(query, 50).filter((a) => !excludeIds.includes(a.id));
+  const results = searchAnimals(query, 150)
+    .filter((a) => !excludeIds.includes(a.id))
+    .sort((a, b) => a.nome > b.nome ? 1 : -1);
 
   // Fecha o dropdown ao clicar fora.
   useEffect(() => {
@@ -76,6 +78,7 @@ export function AnimalSearch({ excludeIds, onPick, disabled }: Props) {
           setActive(0);
         }}
         onFocus={() => setOpen(true)}
+        onClick={() => setOpen(true)}
         onKeyDown={handleKeyDown}
       />
       {open && results.length > 0 && (
@@ -86,7 +89,10 @@ export function AnimalSearch({ excludeIds, onPick, disabled }: Props) {
                 type="button"
                 className={`${styles.option} ${i === active ? styles.active : ""}`}
                 onMouseEnter={() => setActive(i)}
-                onClick={() => choose(animal)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  choose(animal);
+                }}
                 role="option"
                 aria-selected={i === active}
               >

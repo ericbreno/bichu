@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/config/site";
 import styles from "./como-jogar.module.css";
-import Guess from "@/components/game/Guess";
 import { Cell, GuessRow } from "@/lib/game/types";
 import { AnimalGuess } from "@/components/game/AnimalGuess";
 

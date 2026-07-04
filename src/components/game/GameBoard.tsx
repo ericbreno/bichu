@@ -8,7 +8,7 @@ import { HistoryGrid } from "./HistoryGrid";
 import { Legend } from "./Legend";
 import { ResultModal } from "./ResultModal";
 import { StatsModal } from "./StatsModal";
-import { useGameSession } from "./useGameSession";
+import { GameSession, useGameSession } from "./useGameSession";
 import type { Animal, Cell, GameMode, GuessRow } from "@/lib/game/types";
 import styles from "./GameBoard.module.css";
 import { AnimalGuess } from "./AnimalGuess";
@@ -26,19 +26,15 @@ function formatProp(prop: keyof Animal, value: unknown) {
   return value;
 }
 
-export function GameBoard({ mode }: { mode: GameMode }) {
-  const game = useGameSession(mode);
-  const [resultOpen, setResultOpen] = useState(false);
-  const [statsOpen, setStatsOpen] = useState(false);
-  const answer = game.answer;
-
-  const won = game.status === 'won';
-  const foundBooleans: GuessRow = {
-    emoji: won && answer?.emoji || "❓" ,
+function getAnswerMatch(won: boolean, answer: Animal | null, game: GameSession): GuessRow {
+  return {
+    emoji: won && answer?.emoji || "❓",
     animalId: won && answer?.id || "?",
     nome: won && answer?.nome || "?",
     cells: Object.values(game.rows.reduce((ac, row) => {
       row.cells.forEach(cell => {
+        if (!answer?.[cell.key]) return ac;
+
         if (cell.tone === 'green') {
           const ansValue = formatProp(cell.key, answer![cell.key]);
           const hint = typeof ansValue === 'boolean' ? cell.hint : `${ansValue}`;
@@ -47,11 +43,21 @@ export function GameBoard({ mode }: { mode: GameMode }) {
         if (!ac[cell.key]) ac[cell.key] = {
           ...cell,
           hint: '?'
-        }
+        };
       });
       return ac;
     }, {} as Record<string, Cell>))
   };
+}
+
+export function GameBoard({ mode }: { mode: GameMode }) {
+  const game = useGameSession(mode);
+  const [resultOpen, setResultOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
+  const answer = game.answer;
+
+  const won = game.status === 'won';
+  const ansMatch: GuessRow = getAnswerMatch(won, answer, game);
 
   // Reabre o modal de resultado sempre que a partida termina.
   useEffect(() => {
@@ -95,7 +101,7 @@ export function GameBoard({ mode }: { mode: GameMode }) {
         disabled={finished}
       />
 
-      {game.attempts.length > 0 ? <AnimalGuess row={foundBooleans} attemptIndex={0} /> : null}
+      {game.attempts.length > 0 ? <AnimalGuess row={ansMatch} attemptIndex={0} /> : null}
 
       {!finished && game.attempts.length > 0 && (
         <div className={styles.tries}>

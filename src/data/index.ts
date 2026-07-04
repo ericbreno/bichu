@@ -28,6 +28,9 @@ export function searchAnimals(query: string, limit = 6): Animal[] {
   return ANIMALS.filter((a) => {
     if (!q) return true;
     if (normalizeText(a.nome).includes(q)) return true;
+    if (a.classe.includes(q)) return true;
+    if (a.habitat.some(h => normalizeText(h).includes(q))) return true;
+    if (a.dieta.some(d => normalizeText(d).includes(q))) return true;
     return a.aliases?.some((alias) => normalizeText(alias).includes(q)) ?? false;
   }).slice(0, limit);
 }

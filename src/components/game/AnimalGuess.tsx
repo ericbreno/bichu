@@ -11,7 +11,6 @@ export function AnimalGuess({
   attemptIndex: number;
   noBoolean?: boolean;
 }) {
-  console.log({row})
   return (
     <article
       className={styles.card}
