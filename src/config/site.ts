@@ -12,4 +12,6 @@ export const site = {
     linkedinHandle: "in/ericbreno",
   },
   gaId: "G-7VE2SHE9CF",
+  // Publisher ID do AdSense (ca-pub-...). Vazio = anúncios desligados.
+  adsenseClient: "ca-pub-4060030917657414",
 } as const;

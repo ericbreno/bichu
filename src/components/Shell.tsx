@@ -21,8 +21,9 @@ export function Shell({ children }: { children: ReactNode }) {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        <AdSlot slot="footer" />
+        <AdSlot slot="ad-footer" adsenseSlot="ad-footer" />
         <p className={styles.copy}>© {site.name}</p>
+        <div id="ad-footer"></div>
       </footer>
     </div>
   );

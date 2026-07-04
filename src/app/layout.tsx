@@ -102,6 +102,14 @@ gtag('config', '${site.gaId}');`}
             </Script>
           </>
         )}
+        {site.adsenseClient.length > 0 && (
+          <Script
+            async
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}`}
+          />
+        )}
         <StorageContextProvider>
           <AnalyticsContextProvider>
             <ToastProvider>
