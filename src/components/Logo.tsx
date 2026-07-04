@@ -6,7 +6,6 @@ import styles from "./Logo.module.css";
 export function Logo() {
   return (
     <Link href="/" className={styles.logo} aria-label={`${site.name} — voltar ao início`}>
-      <span className={styles.mark} aria-hidden="true" />
       <span className={styles.word}>{site.name}</span>
     </Link>
   );

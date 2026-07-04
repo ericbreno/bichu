@@ -22,23 +22,25 @@ function formatProp(prop: keyof Animal, value: unknown) {
   if (prop === 'expectativaVida') return `${value} anos`;
   if (prop === 'velocidadeMaxima') return `${value} km/h`;
   if (prop === 'pesoMedioKg' && typeof value === 'number') 
-    return value >= 1 ? `${value}kg` : value >= 0.001 ? `${(value / 1000).toFixed(2)}g` : '< 1g';
+    return value >= 1 ? `${value}kg` : value >= 0.001 ? `${(value * 1000)}g` : '< 1g';
   return value;
 }
 
 function getAnswerMatch(won: boolean, answer: Animal | null, game: GameSession): GuessRow {
+  console.log({answer})
   return {
     emoji: won && answer?.emoji || "❓",
     animalId: won && answer?.id || "?",
-    nome: won && answer?.nome || "?",
+    nome: won && answer?.nome || "Animal do Dia",
     cells: Object.values(game.rows.reduce((ac, row) => {
       row.cells.forEach(cell => {
         if (!answer?.[cell.key]) return ac;
 
-        if (cell.tone === 'green') {
-          const ansValue = formatProp(cell.key, answer![cell.key]);
-          const hint = typeof ansValue === 'boolean' ? cell.hint : `${ansValue}`;
-          ac[cell.key] = { ...cell, hint };
+        const ansValue = formatProp(cell.key, answer![cell.key]);
+        const isBoolean = typeof ansValue === 'boolean';
+        if (cell.tone === 'green' || isBoolean) {
+          const hint = isBoolean ? cell.hint : `${ansValue}`;
+          ac[cell.key] = { ...cell, tone: 'green', hint };
         }
         if (!ac[cell.key]) ac[cell.key] = {
           ...cell,
