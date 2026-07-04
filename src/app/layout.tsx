@@ -47,27 +47,18 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.webmanifest",
+  // Preview de link minimizado nos cards sociais: sem imagem e sem descrição.
+  // Sobram só título + URL. A `description` de topo fica por SEO (Google).
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: site.url,
     siteName: site.name,
     title: `${site.name} — adivinhe o animal do dia`,
-    description,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: `${site.name}`,
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${site.name} — adivinhe o animal do dia`,
-    description,
-    images: ["/og-image.png"],
   },
 };
 

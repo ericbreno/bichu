@@ -42,10 +42,10 @@ function getAnswerMatch(won: boolean, answer: Animal | null, game: GameSession):
           const hint = isBoolean ? cell.hint : `${ansValue}`;
           ac[cell.key] = { ...cell, tone: 'green', hint };
         }
-        if (!ac[cell.key]) ac[cell.key] = {
-          ...cell,
-          hint: '?'
-        };
+        // if (!ac[cell.key]) ac[cell.key] = {
+        //   ...cell,
+        //   hint: '?'
+        // };
       });
       return ac;
     }, {} as Record<string, Cell>))

@@ -8,10 +8,11 @@ import { Modal } from "@/components/ui/Modal";
 import { ShareButton } from "./ShareButton";
 import { ShareImageButton } from "./ShareImageButton";
 import { brtDateString } from "@/lib/date";
-import { buildShareParts, buildShareText, stripProtocol } from "@/lib/game/share";
+import { buildShareParts, buildShareText } from "@/lib/game/share";
 import type { Animal, GameMode, GuessRow } from "@/lib/game/types";
 import type { Stats } from "@/lib/game/stats";
 import styles from "./ResultModal.module.css";
+import { site } from "@/config/site";
 
 interface Props {
   open: boolean;
@@ -70,14 +71,7 @@ export function ResultModal({
 }: Props) {
   const title = won ? "Você acertou! 🎉" : "Não foi dessa vez";
 
-  // Link atual da página sem o protocolo — definido no cliente para evitar
-  // divergência entre SSR e hidratação.
-  const [link, setLink] = useState("");
-  useEffect(() => {
-    setLink(stripProtocol(window.location.href));
-  }, []);
-
-  const parts = buildShareParts({ mode, dayNumber, rows, link });
+  const parts = buildShareParts({ mode, dayNumber, rows, link: site.url });
   const shareText = () => buildShareText(parts);
 
   return (
