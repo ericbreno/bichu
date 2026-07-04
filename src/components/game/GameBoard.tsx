@@ -27,7 +27,6 @@ function formatProp(prop: keyof Animal, value: unknown) {
 }
 
 function getAnswerMatch(won: boolean, answer: Animal | null, game: GameSession): GuessRow {
-  console.log({answer})
   return {
     emoji: won && answer?.emoji || "❓",
     animalId: won && answer?.id || "?",
